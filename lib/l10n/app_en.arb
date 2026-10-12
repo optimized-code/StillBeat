@@ -1,0 +1,305 @@
+{
+  "@@locale": "en",
+  "appTagline": "Experimental contactless pulse estimation",
+  "disclaimer": "This application provides experimental camera-based physiological estimates for informational and research purposes only. Results are not a medical diagnosis and must not be used to make medical decisions. Measurement quality and accuracy may vary.",
+  "disclaimerShort": "Experimental estimate — not a medical device or diagnosis.",
+  "commonContinue": "Continue",
+  "commonBack": "Back",
+  "commonCancel": "Cancel",
+  "commonDelete": "Delete",
+  "commonRetry": "Try again",
+  "commonClose": "Close",
+  "commonDone": "Done",
+  "commonLoading": "Loading…",
+  "commonBpm": "BPM",
+  "commonNotAvailable": "Not available",
+  "commonLearnMore": "Learn more",
+  "onboardingTitle1": "How it works",
+  "onboardingBody1": "Each heartbeat slightly changes the colour of your skin as blood volume changes. These changes are far too small to see, but a camera can pick them up. This technique is called remote photoplethysmography (rPPG).",
+  "onboardingTitle2": "Light and stillness matter",
+  "onboardingBody2": "The signal is tiny, so movement, talking, changing light, screen flicker and strong backlight can easily overwhelm it. Sit still in soft, even, front-facing light for best results.",
+  "onboardingTitle3": "What this app can and cannot do",
+  "onboardingBody3": "It estimates heart rate in beats per minute when the signal passes quality checks. It does not measure blood pressure, oxygen saturation, glucose, temperature or stress, and it cannot detect or rule out any medical condition.",
+  "onboardingTitle4": "Your data stays on this device",
+  "onboardingBody4": "Video is processed on the device and is never recorded, saved or uploaded. Only measurement summaries you choose to save are stored locally, and you can export or delete them at any time.",
+  "onboardingAcknowledge": "I understand these results are experimental estimates and are not medical advice.",
+  "onboardingGetStarted": "Get started",
+  "onboardingStepLabel": "Step {current} of {total}",
+  "@onboardingStepLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "homeStartMeasurement": "Start measurement",
+  "homeIntro": "Sit still, face the camera in even light, and hold for about {seconds} seconds.",
+  "@homeIntro": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "homeLatestResult": "Latest saved result",
+  "homeNoResults": "No saved measurements yet.",
+  "homeHistorySummary": "{count, plural, =0{No measurements} =1{1 measurement saved} other{{count} measurements saved}}",
+  "@homeHistorySummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeViewHistory": "View history",
+  "homeMethodology": "How it works",
+  "homePrivacy": "Privacy",
+  "homeSettings": "Settings",
+  "homeUnsupported": "Live measurement isn't available here: {reason}",
+  "@homeUnsupported": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "measureTitle": "Measurement",
+  "measureCancel": "Cancel measurement",
+  "measureCamera": "Camera",
+  "measurePhaseIdle": "Ready",
+  "measurePhaseRequestingPermission": "Requesting camera access…",
+  "measurePhaseInitializing": "Starting camera…",
+  "measurePhasePositioning": "Position your face",
+  "measurePhaseWarmingUp": "Hold still — stabilising",
+  "measurePhaseMeasuring": "Measuring",
+  "measurePhaseValidating": "Checking signal quality…",
+  "measurePhaseCompleted": "Measurement complete",
+  "measurePhaseCancelled": "Measurement cancelled",
+  "measurePhaseInterrupted": "Measurement paused",
+  "measurePhasePermissionDenied": "Camera access needed",
+  "measurePhaseUnsupported": "Not supported",
+  "measurePhaseLowSignalQuality": "Signal quality too low",
+  "measurePhaseTimedOut": "Measurement timed out",
+  "measurePhaseCameraFailure": "Camera problem",
+  "measurePhaseInferenceFailure": "Processing unavailable",
+  "measureSecondsRemaining": "{seconds}s remaining",
+  "@measureSecondsRemaining": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "measureCollecting": "Collecting signal…",
+  "measureLiveEstimate": "Live estimate",
+  "measureLiveUnavailable": "No reliable estimate right now",
+  "measurePurpose": "The camera is used only while measuring, to read tiny colour changes in your skin. Nothing is recorded or uploaded.",
+  "measureStart": "Start camera",
+  "measureHeuristicLocator": "Face detection is not available in the browser. The app checks that skin-coloured pixels fill the guide; it cannot confirm a face or detect other people.",
+  "measureFps": "{fps} fps",
+  "@measureFps": {
+    "placeholders": {
+      "fps": {
+        "type": "String"
+      }
+    }
+  },
+  "measureOpenSettings": "Open settings",
+  "measureViewResult": "View result",
+  "measureWaveformLabel": "Filtered pulse signal (normalised)",
+  "measureGuideSemantics": "Camera preview with face guide",
+  "issueNoFace": "No face detected — centre your face in the guide",
+  "issueMultipleFaces": "More than one face detected — only one person should be in view",
+  "issueFaceTooSmall": "Move closer to the camera",
+  "issueFaceTooLarge": "Move a little further away",
+  "issueFaceOffCenter": "Centre your face in the guide",
+  "issueNotFacingCamera": "Look straight at the camera",
+  "issueLowLight": "Too dark — add soft light in front of you",
+  "issueOverexposed": "Too bright — avoid direct light on your face",
+  "issueUnevenLighting": "Lighting is changing or uneven — face a steady, even light",
+  "issueExcessiveMotion": "Too much movement — keep your head still",
+  "issueLowFrameRate": "Camera frame rate is too low — close other apps or tabs",
+  "issueIrregularSampling": "Frames are arriving irregularly — the device may be busy",
+  "issueInsufficientSamples": "Not enough usable signal yet",
+  "issueWeakSignal": "Pulse signal is weak",
+  "issueAmbiguousSpectrum": "Pulse signal is ambiguous",
+  "issueUnstableEstimate": "Estimates are inconsistent",
+  "errorPermissionDenied": "Camera access was denied. Allow camera access to measure.",
+  "errorPermissionPermanentlyDenied": "Camera access is blocked. Enable it in system or browser settings, then try again.",
+  "errorCameraUnavailable": "No usable camera was found.",
+  "errorCameraFailure": "The camera stopped or could not start. Close other apps using the camera and try again.",
+  "errorUnsupportedPlatform": "Live measurement isn't supported on this platform or browser.",
+  "errorFaceNotDetected": "A face could not be detected.",
+  "errorPoorLighting": "Lighting was not suitable for measurement.",
+  "errorExcessiveMovement": "There was too much movement.",
+  "errorInsufficientSignal": "The signal was not strong enough.",
+  "errorUnsupportedModel": "The selected algorithm is not available in this build.",
+  "errorModelInitializationFailed": "The model could not be loaded.",
+  "errorInferenceFailed": "Signal processing failed. Please try again.",
+  "errorStorageFailed": "Your data could not be read or saved.",
+  "errorExportFailed": "Export failed.",
+  "errorSessionCancelled": "The measurement was cancelled.",
+  "errorMeasurementTimeout": "The measurement took too long. Check positioning and lighting and try again.",
+  "errorInterrupted": "The app left the foreground, so the camera was stopped. Return to resume.",
+  "failureInsufficientValidWindows": "Too little of the recording passed quality checks to report a value.",
+  "failureUnstableEstimates": "Estimates varied too much across the recording to report a value.",
+  "failureNoFace": "Your face was not consistently in position.",
+  "failurePoorLighting": "Lighting was not suitable.",
+  "failureExcessiveMotion": "There was too much movement.",
+  "failureLowFrameRate": "The camera delivered too few frames.",
+  "failureWeakSignal": "The pulse signal was too weak.",
+  "failureNoValue": "No heart rate is reported because the signal did not pass quality checks.",
+  "failureTips": "Tips: sit still, avoid talking, face a soft light source, and avoid backlight or flickering screens.",
+  "resultsTitle": "Result",
+  "resultsHeartRate": "Estimated heart rate",
+  "resultsQuality": "Signal quality",
+  "resultsDate": "Date",
+  "resultsDuration": "Duration",
+  "resultsDurationValue": "{seconds} s",
+  "@resultsDurationValue": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "resultsConsistency": "Window agreement",
+  "resultsConsistencyValue": "{valid} of {total} windows usable · spread ±{iqr} BPM",
+  "@resultsConsistencyValue": {
+    "placeholders": {
+      "valid": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "iqr": {
+        "type": "String"
+      }
+    }
+  },
+  "resultsConsistencyHelp": "The recording is split into overlapping 10-second windows. This shows how many passed quality checks and how much their estimates disagreed (interquartile range). It describes internal consistency, not accuracy against a medical device.",
+  "resultsAlgorithm": "Algorithm",
+  "resultsAlgorithmKindSignal": "Signal processing (no neural network)",
+  "resultsAlgorithmKindNeural": "Neural network",
+  "resultsWaveform": "Pulse waveform",
+  "resultsWaveformHelp": "Band-pass-filtered pulse signal extracted from your camera feed for the last valid window, scaled to unit variance. It is not an ECG.",
+  "resultsSave": "Save",
+  "resultsSaved": "Saved to history",
+  "resultsDiscard": "Discard",
+  "resultsRetry": "Measure again",
+  "resultsLimitations": "Limitations",
+  "resultsLimitationsBody": "Accuracy has not been clinically validated. Skin tone, lighting, camera quality, movement, makeup and facial hair can all affect results. Do not use this value for medical decisions.",
+  "resultsNone": "No result to show.",
+  "qualityGood": "Good",
+  "qualityAcceptable": "Acceptable",
+  "qualityPoor": "Poor",
+  "qualityInsufficientData": "Insufficient data",
+  "qualityUnavailable": "Unavailable",
+  "qualityExplanation": "Signal quality is a rule-based rating from signal-to-noise ratio, spectral peak clarity, agreement between windows, face tracking, lighting and motion. It is not a probability that the value is correct.",
+  "historyTitle": "History",
+  "historyEmpty": "No saved measurements for this period.",
+  "historyError": "History could not be loaded.",
+  "historyCorrupted": "{count, plural, =1{1 stored entry could not be read and was skipped.} other{{count} stored entries could not be read and were skipped.}}",
+  "@historyCorrupted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyFilter7d": "7 days",
+  "historyFilter30d": "30 days",
+  "historyFilterAll": "All",
+  "historyFilterCustom": "Custom",
+  "historyTrend": "Trend",
+  "historyTrendNeedsMore": "Save at least two measurements to see a trend.",
+  "historyTrendNote": "Normal heart rate varies with activity, posture, caffeine, time of day and more. Changes here are not a diagnosis.",
+  "historyExportJson": "Export as JSON",
+  "historyExportCsv": "Export as CSV",
+  "historyDeleteAll": "Delete all measurements",
+  "historyDeleteAllConfirm": "Delete all saved measurements from this device? This cannot be undone.",
+  "historyDeleteOneConfirm": "Delete this measurement?",
+  "historyDeleted": "Deleted",
+  "historyDetailTitle": "Measurement details",
+  "historyExported": "Export ready",
+  "historyNothingToExport": "There are no measurements to export.",
+  "settingsTitle": "Settings",
+  "settingsAppearance": "Appearance",
+  "settingsTheme": "Theme",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Light",
+  "settingsThemeDark": "Dark",
+  "settingsLanguage": "Language",
+  "settingsLanguageSystem": "System default",
+  "settingsMeasurement": "Measurement",
+  "settingsDuration": "Measurement duration",
+  "settingsDurationValue": "{seconds} seconds",
+  "@settingsDurationValue": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsAlgorithm": "Algorithm",
+  "settingsNeuralUnavailable": "Neural model — not installed in this build",
+  "settingsData": "Your data",
+  "settingsExport": "Export measurements",
+  "settingsDeleteAll": "Delete all data",
+  "settingsDeleteAllBody": "Deletes all measurements and settings from this device, including your acknowledgement of the limitations. This cannot be undone.",
+  "settingsDeletedAll": "All data deleted",
+  "settingsAbout": "About",
+  "settingsMethodology": "Methodology, models and licences",
+  "settingsPrivacy": "Privacy",
+  "settingsLicenses": "Open-source licences",
+  "settingsVersion": "Version",
+  "settingsPrivacyPolicy": "Privacy policy",
+  "settingsSupport": "Support",
+  "settingsStorage": "Storage: {backend} (not encrypted by the app)",
+  "@settingsStorage": {
+    "placeholders": {
+      "backend": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutTitle": "How it works",
+  "aboutPipelineTitle": "Signal pipeline",
+  "aboutPipelineBody": "1. A face detector locates your face (on Android and iOS). 2. The average colour of skin pixels on your forehead and cheeks is computed for each frame; pixels are discarded immediately. 3. Samples are re-timed onto an even 30 Hz grid. 4. An rPPG algorithm combines the colour channels to cancel lighting and motion effects. 5. The signal is band-pass filtered (0.6–4 Hz) and the strongest frequency between 40 and 180 BPM is found. 6. Quality checks decide whether a value can be reported.",
+  "aboutAlgorithmsTitle": "Algorithms",
+  "aboutActiveAlgorithm": "Active",
+  "aboutFaceDetectionTitle": "Face detection",
+  "aboutFaceDetectionMobile": "Android and iOS use Google ML Kit face detection on the device, configured for bounding boxes and head angle only. No recognition, tracking or attribute classification is used.",
+  "aboutFaceDetectionWeb": "The web build has no face detector. It checks that skin-coloured pixels fill the on-screen guide, so it cannot confirm that a face is present or that only one person is in view.",
+  "aboutQualityTitle": "Signal quality",
+  "aboutLimitationsTitle": "Known limitations",
+  "aboutLimitationsBody": "Not clinically validated. rPPG is known to be less reliable on darker skin tones, in low or changing light, with movement, and with low-quality cameras. Respiratory rate, blood pressure, oxygen saturation and other vital signs are not estimated.",
+  "aboutNeuralTitle": "Neural models",
+  "aboutNeuralBody": "Neural rPPG models (for example EfficientPhys and TS-CAN from rPPG-Toolbox) were evaluated but are not included: the available pretrained weights are distributed under a licence with use restrictions and were trained on research-only datasets. See docs/model_evaluation.md in the source repository.",
+  "aboutNotices": "View open-source licences",
+  "privacyTitle": "Privacy",
+  "privacyBody1Title": "Camera",
+  "privacyBody1": "Camera access is requested only when you start a measurement. Frames are processed in memory into average colour values and discarded immediately. No video or images are recorded, saved or uploaded. The camera is switched off when a measurement ends, is cancelled, or the app leaves the foreground.",
+  "privacyBody2Title": "Stored data",
+  "privacyBody2": "Only measurements you choose to save are stored: date, duration, heart-rate estimate, quality metrics and algorithm version. They are stored locally ({backend}) and are not encrypted by the app beyond the protection your operating system or browser provides.",
+  "@privacyBody2": {
+    "placeholders": {
+      "backend": {
+        "type": "String"
+      }
+    }
+  },
+  "privacyBody3Title": "No accounts, analytics or cloud",
+  "privacyBody3": "There is no account, no cloud sync, no advertising and no analytics or crash-reporting SDK. The Android release build has no internet permission, and the web build loads all of its code and fonts from its own server.",
+  "privacyBody4Title": "Third-party components",
+  "privacyBody4": "Face detection on Android and iOS uses Google ML Kit, which runs on the device. On Android the app has no internet permission, so ML Kit cannot send anything. On iOS, Google's ML Kit SDK may send performance and usage metrics to Google under Google's own terms; the app itself sends no data. The web version uses no face detector and makes no third-party requests.",
+  "privacyBody5Title": "Export and deletion",
+  "privacyBody5": "You can export your measurements as JSON or CSV and delete individual measurements or all data in Settings. Deletion removes the records from the app's database; like most apps, it cannot guarantee physical erasure from flash storage.",
+  "metricSnr": "Signal-to-noise ratio (dB)",
+  "metricProminence": "Spectral peak prominence",
+  "metricFrameRate": "Camera frame rate (Hz)"
+}

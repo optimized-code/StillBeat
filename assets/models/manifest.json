@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "description": "Neural rPPG model assets bundled with this build. Empty: no model has been cleared for redistribution (see docs/model_integration.md). Each entry must list file, sha256, source URL, license and training datasets.",
+  "models": []
+}

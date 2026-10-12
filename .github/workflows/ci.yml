@@ -1,0 +1,129 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.27.3"
+
+jobs:
+  checks:
+    name: Format, analyze, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Generated localisations are up to date
+        run: |
+          flutter gen-l10n
+          git diff --exit-code lib/l10n/generated
+      - name: Format
+        run: dart format --output=none --set-exit-if-changed lib test integration_test
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+      - name: Unit + widget tests (VM)
+        run: flutter test --coverage
+      - name: Signal pipeline tests compiled to JavaScript (Chrome)
+        # Catches dart2js-only issues such as Int64List or 64-bit shifts.
+        run: >
+          flutter test --platform chrome
+          test/services/rppg test/services/export_test.dart
+          test/services/frame_processing_test.dart
+          test/features/measurement/domain_test.dart
+      - name: Model asset checksums
+        run: tool/verify_models.sh
+      - name: Dependency licences and advisories
+        run: |
+          dart pub outdated --no-dev-dependencies || true
+          tool/check_licenses.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/lcov.info
+          retention-days: 14
+
+  web:
+    name: Web release build
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - run: flutter build web --release --no-web-resources-cdn --no-source-maps
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web
+          retention-days: 14
+
+  android:
+    name: Android release build
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - name: Decode signing key (only when secrets are configured)
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        if: ${{ env.KEYSTORE_B64 != '' }}
+        run: echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+      - name: Build AAB
+        env:
+          STILLBEAT_KEYSTORE_PATH: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && format('{0}/upload.jks', runner.temp) || '' }}
+          STILLBEAT_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          STILLBEAT_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          STILLBEAT_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: flutter build appbundle --release
+      - name: Verify release permissions
+        run: tool/check_android_permissions.sh build/app/outputs/bundle/release/app-release.aab
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+          retention-days: 14
+
+  ios:
+    name: iOS build (no codesign)
+    needs: checks
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - run: cd ios && pod install --repo-update
+      - run: flutter build ios --release --no-codesign
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-app-unsigned
+          path: build/ios/iphoneos/Runner.app
+          retention-days: 7

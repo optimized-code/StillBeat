@@ -1,0 +1,107 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# ---------------------------------------------------------------------------
+# Project additions
+# ---------------------------------------------------------------------------
+
+# Test coverage output
+/coverage/
+
+# Secrets and signing material (supply via CI secrets or local files only;
+# see docs/release_checklist.md). Never commit these.
+.env
+.env.*
+*.env
+**/key.properties
+*.keystore
+*.jks
+*.p12
+*.p8
+*.pem
+*.mobileprovision
+*.provisionprofile
+**/GoogleService-Info.plist
+**/google-services.json
+**/ios/fastlane/report.xml
+**/ios/fastlane/Preview.html
+**/ios/fastlane/screenshots
+**/ios/fastlane/test_output
+**/android/fastlane/report.xml
+
+# Build outputs that sometimes land outside /build
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+
+# Local web deploy previews
+/.firebase/
+/.netlify/
+/.vercel/
+
+# Raw camera recordings / research data must never be committed (privacy and
+# dataset licences). Synthetic fixtures are generated in code.
+*.y4m
+*.mp4
+*.mov
+*.avi
+*.mkv
+/data/
+/datasets/
+
+# Unvetted model weights (only files declared in assets/models/manifest.json
+# with provenance + licence may be added; force-add after review).
+*.pth
+*.pt
+*.onnx
+*.tflite
+*.ckpt
+
+# Local tool / editor state
+.claude/settings.local.json
+.fvm/
+*.code-workspace

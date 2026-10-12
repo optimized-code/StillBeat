@@ -1,0 +1,77 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+// Release signing is supplied outside the repository. Create
+// android/key.properties (git-ignored) or set the STILLBEAT_* environment
+// variables in CI. See docs/release_checklist.md.
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.withReader("UTF-8") { keystoreProperties.load(it) }
+}
+def signingValue = { String key, String env ->
+    keystoreProperties.getProperty(key) ?: System.getenv(env)
+}
+def hasReleaseSigning = signingValue("storeFile", "STILLBEAT_KEYSTORE_PATH") != null
+
+android {
+    namespace = "com.example.stillbeat"
+    compileSdk = flutter.compileSdkVersion
+    // Highest NDK required by plugins (backward compatible).
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        // Placeholder. Must be replaced with the final reverse-DNS ID before
+        // store submission (com.example.* is rejected by Google Play).
+        applicationId = "com.example.stillbeat"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // 23: runtime permission model; ML Kit and CameraX need >= 21.
+        minSdk = 23
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        manifestPlaceholders += [appName: project.findProperty("appName") ?: "Stillbeat"]
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            release {
+                storeFile = file(signingValue("storeFile", "STILLBEAT_KEYSTORE_PATH"))
+                storePassword = signingValue("storePassword", "STILLBEAT_KEYSTORE_PASSWORD")
+                keyAlias = signingValue("keyAlias", "STILLBEAT_KEY_ALIAS")
+                keyPassword = signingValue("keyPassword", "STILLBEAT_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // Without external signing config the release build is signed
+            // with the debug key so it can be installed locally; such a
+            // build must never be uploaded to a store.
+            signingConfig = hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
